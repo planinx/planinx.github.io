@@ -192,9 +192,9 @@ function openTitle(){
 
 /* ---- level select ---- */
 const HOW={
-1:'<p>ขยับเมาส์ / ลากนิ้ว ให้ <b>มือ</b> หมุนเหมือนเข็มนาฬิกา</p><p>ใช้มือดัก <b>Dyno</b> ให้โดน แต่ต้องหันหนี <b>ปีศาจ</b>!</p>',
-2:'<p>ค่อย ๆ ขยับเข้าไปใกล้ Dyno... อีกนิดก็จะได้จุ๊บกันแล้ว!</p><p>กด <b>Space</b> หรือแตะปุ่มให้ตรงจังหวะหัวใจ ยิ่งเข้าใกล้ หัวใจก็ยิ่งเต้นเร็วขึ้น ถ้าพลาดหัวใจจะลด 5 แต้ม</p>',
-3:'<p>อาหารหล่นจากฟ้า!</p><p>กด <b>&lt; &gt;</b> ให้ Dyno รับอาหาร แต่ <b>อย่ารับ</b> ไส้เดือนกับหัวกะโหลก! ถ้ารับผิดจะโดนหัก 5 แต้ม</p>'};
+1:'<p>ทายสิ ตอนนี้เวลาอะไร?</p><p>ใช่แล้ว <b>เวลาของ Dyno ไง!</b></p><p>เลื่อนเมาส์ / ลากนิ้ว ชี้เข็มนาฬิกาไปหา <b>Dyno</b> แล้วหลบ <b>ปีศาจ</b> ตัวแทนของช่วงเวลาแย่ ๆ อย่าให้เข็มโดน!</p>',
+2:'<p>ทายสิ นี่เวลาอะไร?</p><p><b>เวลาแห่งความหวานกับ Dyno ไง!</b></p><p>กด <b>Space</b> หรือแตะปุ่มให้ตรงจังหวะหัวใจ ยิ่งเข้าใกล้ หัวใจยิ่งเต้นเร็วขึ้น ถ้าพลาดหัวใจจะลด 5 แต้ม</p>',
+3:'<p>ทายสิ นี่เวลาอะไร?</p><p><b>เวลาให้อาหาร Dyno!</b></p><p>กด <b>&lt; &gt;</b> ขยับ Dyno ไปรับอาหารดี ๆ แล้วหลบไส้เดือน หัวกะโหลก และระเบิด! ถ้ารับของผิดจะโดนหัก 5 แต้ม</p>'};
 function openSel(){
  const L=$('#lvs');L.innerHTML='';
  for(let i=1;i<=3;i++){const ok=i<=S.prog+1,d=document.createElement('div');d.className='lv'+(ok?'':' lock');d.style.animationDelay=i*.12+'s';
@@ -207,9 +207,9 @@ $('#selBack').onclick=()=>openTitle();
 $('#sec').onclick=()=>modal(`<h2>Do you love Dyno?</h2><p>รัก Dyno ใช่หรือไม่</p>`,[["Yes",spam],["ใช่",spam]]);
 function spam(){
  const s=document.createElement('div');s.id='spam';document.body.append(s);let n=0;
- const t=setInterval(()=>{const d=document.createElement('div');const fs=R(24,64);d.innerHTML='I love you '+hrt(fs*.8);d.style.fontSize=fs+'px';s.append(d);s.scrollTop=s.scrollHeight;
-  if(++n>110){clearInterval(t);const b=document.createElement('button');b.className='btn';b.textContent='Restart';b.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%)';b.onclick=()=>{s.remove();b.remove();S.prog=0;S.cheat=false;go('gate')};document.body.append(b);b.style.zIndex=30}},45)}
-function start(n){[0,g1,g2,g3][n](n)}
+ const t=setInterval(()=>{const d=document.createElement('div');const fs=R(24,64);d.innerHTML='I love you '+hrt(fs*.8);d.style.fontSize=fs+'px';s.append(d);s.scrollTop=s.scrollHeight;n++},100);
+ setTimeout(()=>{const b=document.createElement('button');b.className='btn';b.textContent='Restart';b.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:30';b.onclick=()=>{clearInterval(t);s.remove();b.remove();S.prog=0;S.cheat=false;go('gate')};document.body.append(b)},3000)
+}function start(n){[0,g1,g2,g3][n](n)}
 
 /* ---- pixel sprites ---- */
 const PAL={'#':'#222',p:'#f4a0a8',w:'#fff',r:'#e8465a',y:'#f6c945',g:'#4caf50',o:'#f28c38',k:'#555',m:'#999',d:'#111'};
@@ -223,7 +223,7 @@ rice:px(["...##...","..#ww#..",".#wwww#.","#wwwwww#","#wwwwww#","#wggggw#","#wgg
 worm:px(["........","##......","#k#.....",".#kmm...","..#kk#..","...#kk#.","....#kk#",".....###"]),
 skull:px([".######.","#kkkkkk#","#kdkkdk#","#kkkkkk#",".#kkkk#.","..#k#k#.","..#####."]),
 bomb:px(["....#r..","...#....",".######.","#kkkkkk#","#kmkkkk#","#kkkkkk#",".#kkkk#.","..####.."]),
-hand:`<svg viewBox="0 0 40 12" shape-rendering="crispEdges"><g fill="#fff" stroke="#222" stroke-width="1"><rect x="0.5" y="4.5" width="28" height="3"/><rect x="28.5" y="1.5" width="5" height="9"/><rect x="33.5" y="1.5" width="6" height="2"/><rect x="33.5" y="4.5" width="6" height="2"/><rect x="33.5" y="7.5" width="6" height="2"/></g></svg>`};
+hand:`<svg viewBox="0 0 100 12" shape-rendering="crispEdges"><rect x="0.5" y="3.5" width="96" height="5" fill="#fff" stroke="#222" stroke-width="2.8"/></svg>`};
 const hrt=n=>`<span class="ph" style="width:${n}px;height:${n*.9}px">${SPR.heart}</span>`;
 const spr=k=>`<div class="sp">${SPR[k]}</div>`;
 FB.dinoCatch=FB.dino;
@@ -240,7 +240,7 @@ function g1(n){
  const ar=$('#ar'),hd=$('#hd'),goal=CFG.goal[1],C=[],lerp=(a,b,k)=>a+(b-a)*k;let m=0,ang=-Math.PI/2,tgt=ang,Tt=.5,Td=2.5,done=false;
  hd.innerHTML=CFG.img.hand?`<img src="${CFG.img.hand}" draggable="false">`:SPR.hand;
  const aim=e=>{const r=ar.getBoundingClientRect();tgt=Math.atan2(e.clientY-r.top-r.height/2,e.clientX-r.left-r.width/2)};
- ar.addEventListener('pointermove',aim);ar.addEventListener('pointerdown',aim);
+ on(document,'pointermove',aim);on(ar,'pointerdown',aim);
  G.cheat=()=>{if(done)return;m=Math.min(1,m+10/goal);$('#mf').style.clipPath=`inset(${(1-m)*100}% 0 0 0)`;if(m>=1){done=true;setTimeout(()=>win(n),400)}};
  function spawn(toey,w,s){const dir=Math.random()<.5?1:-1,el=document.createElement('div');el.className='ent';el.innerHTML=sp(toey?'toey':'demon');ar.append(el);
   C.push({el,toey,side:Math.floor(R(0,4)),dir,u:dir>0?-s:w,v:toey?R(120,200)+m*80:R(140,220)+m*110,alive:true})}
@@ -307,15 +307,16 @@ function g2(n){
  const goal=CFG.goal[2],ln=$('#ln'),H=[],lerp=(a,b,k)=>a+(b-a)*k;let prog=0,tm=.6,done=false;
  const k=()=>prog/goal;
  const setP=c=>{setMeter(prog/goal);const f=$('#face');f.style.transform=`scale(${1+prog/goal*2.2})`;f.classList.remove('chomp','hurt');void f.offsetWidth;f.classList.add(c)};
+ function miss(){if(done)return;prog=Math.max(0,prog-5);shake($( '#rg' ));setP('hurt');play('fail')};
  function hit(){if(done)return;const c=ln.clientWidth/2;let b=null;H.forEach(h=>{if(Math.abs(h.x-c)<40&&(!b||Math.abs(h.x-c)<Math.abs(b.x-c)))b=h});
-  if(!b){prog=Math.max(0,prog-5);shake($('#rg'));setP('hurt');play('fail');return}
+  if(!b){miss();return}
   b.el.remove();H.splice(H.indexOf(b),1);prog++;setP('chomp');play('beat');
   if(prog>=goal){done=true;setTimeout(()=>win(n),900)}}
  G.cheat=()=>{if(done)return;prog=Math.min(goal,prog+10);setP('chomp');if(prog>=goal){done=true;setTimeout(()=>win(n),900)}};
  on(document,'keydown',e=>{if(e.code==='Space'){e.preventDefault();hit()}});$('#hit').onpointerdown=e=>{e.preventDefault();hit()};
  loop(dt=>{const w=ln.clientWidth;tm-=dt;
   if(tm<=0&&!done){const kk=k(),vr=lerp(.1,.55,kk);tm=lerp(3,.55,kk)*R(1-vr,1+vr*1.6);if(kk>.35&&Math.random()<kk*.3)tm=R(.28,.4);const el=document.createElement('div');el.className='hrt';el.innerHTML=SPR.heart;ln.append(el);H.push({el,x:-30,v:w*Math.min(1,lerp(.3,.78,kk)*R(1-vr,1+vr))})}
-  for(let i=H.length-1;i>=0;i--){const h=H[i];h.x+=dt*h.v;h.el.style.transform=`translateX(${h.x-20}px)`;if(h.x>w+30){h.el.remove();H.splice(i,1)}}});
+  for(let i=H.length-1;i>=0;i--){const h=H[i];h.x+=dt*h.v;h.el.style.transform=`translateX(${h.x-20}px)`;if(h.x>w+30){h.el.remove();H.splice(i,1);miss()}}});
 }
 
 /* ---- game 3: catch food, wrong food = -5 points ---- */
