@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Operation: Sweet Routine</title><link id="app-icon" rel="icon" type="image/png" href="./assets/favicon.png">
+<title>Operation: Sweet Routine</title><link id="app-icon" rel="icon" type="image/png">
 <style>
 :root{--ink:#222;--pk:#f4a0a8;--ps:#fdeaec;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -26,7 +26,7 @@ input{font:inherit;font-size:calc(22px*var(--fs,1));text-align:center;border:4px
 .hero .sp{width:100%;height:100%;animation:float 2.2s ease-in-out infinite .9s}
 h1{margin:0;font-size:clamp(40px,8vw,84px);line-height:1}
 h1 span{display:inline-block;animation:wave 1.6s ease-in-out infinite}#ttl{white-space:normal;line-height:1.05}.pixel-r{display:inline-block;width:.54em;height:.8em;vertical-align:-.08em}.pixel-r svg{width:100%;height:100%;display:block;fill:currentColor}
-.blink{font-size:calc(22px*var(--fs,1));width:min(360px,90vw);margin:12px 0 0;animation:blink 1s steps(2) infinite}
+.blink{font-size:calc(22px*var(--fs,1));width:auto;max-width:90vw;margin:12px 0 0;animation:blink 1s steps(2) infinite}
 .hb{color:var(--pk);font-size:calc(40px*var(--fs,1));animation:beat 1s infinite}
 /* select */
 .lv{width:min(180px,28vw);cursor:pointer;animation:popin .5s both}
@@ -185,7 +185,7 @@ function askPass(){const m=modal(`<h2>Secret code</h2><p>ใส่วันค�
 /* ---- title ---- */
 function openTitle(){
  $('#hero').innerHTML=sp('cover');
- $('#ttl').innerHTML=['Sweet Routine','Heartbeat'].map((w,i)=>[...w].map((c,j)=>`<span style="animation-delay:${(i*4+j)*.08}s">${c}</span>`).join('')).join('<br>');
+ $('#ttl').innerHTML=['Sweet Routine','Heartbeat'].map((w,i)=>[...w].map((c,j)=>`<span style="animation-delay:${(i*4+j)*.08}s">${c===' '?'&nbsp;':c}</span>`).join('')).join('<br>');
  go('title');
  const next=()=>{document.removeEventListener('keydown',k);$('#title').onclick=null;openSel()};
  const k=e=>{if(e.code==='Space'){e.preventDefault();next()}};
