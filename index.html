@@ -52,7 +52,7 @@ h1 span{display:inline-block;animation:wave 1.6s ease-in-out infinite}#ttl{white
 .chomp{animation:pop .3s}
 .dino{position:absolute;bottom:4px;left:0;width:64px;height:64px}
 .food{position:absolute;left:0;top:0;font-size:calc(32px*var(--fs,1))}
-.ctl{display:flex;gap:20px}.ctl .btn{font-size:calc(32px*var(--fs,1));width:90px}
+.catch-column{width:min(84vw,340px);display:flex;flex-direction:column;gap:12px}.ctl{display:flex;width:100%;gap:12px}.ctl .btn{flex:1;min-width:0;font-size:calc(32px*var(--fs,1))}
 #spam{position:fixed;inset:0;background:#fff;overflow-y:auto;z-index:20;text-align:center;padding:10px}
 #spam div{color:var(--pk);-webkit-text-stroke:1px var(--ink);font-weight:700;animation:popin .3s both}
 body::before{content:'';position:fixed;inset:-56px;z-index:-1;background:var(--tile) 0 0/28px 28px;animation:bgm 3s linear infinite;will-change:transform}
@@ -333,7 +333,7 @@ function g2(n){
 
 /* ---- game 3: catch food, wrong food = -5 points ---- */
 function g3(n){
- shell(`<div class="gw">${meterHTML()}<div class="arena" id="ar"><div class="dino" id="dn">${sp('dinoCatch')}</div></div></div><div class="ctl"><button class="btn" id="bl">&lt;</button><button class="btn" id="br">&gt;</button></div>`);
+ shell(`<div class="gw">${meterHTML()}<div class="catch-column"><div class="arena" id="ar"><div class="dino" id="dn">${sp('dinoCatch')}</div></div><div class="ctl"><button class="btn" id="bl">&lt;</button><button class="btn" id="br">&gt;</button></div></div></div>`);
  const ar=$('#ar'),dn=$('#dn'),dsp=dn.firstChild,goal=CFG.goal[3],GOOD=['apple','berry','cake','rice'],BAD=['worm','skull','bomb'],FO=CFG.food||{},DW=96,lerp=(a,b,k)=>a+(b-a)*k;let x=100,dir=0,sc=0,tm=1.2,L=[];
  const anim=c=>{dsp.classList.remove('hop','hurt');void dsp.offsetWidth;dsp.classList.add(c)};
  const key=e=>{const d=e.type==='keydown';if(['ArrowLeft','KeyA'].includes(e.code))dir=d?-1:(dir===-1?0:dir);if(['ArrowRight','KeyD'].includes(e.code))dir=d?1:(dir===1?0:dir)};
